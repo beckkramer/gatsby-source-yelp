@@ -1,0 +1,28 @@
+{
+  "name": "@leomanlapera/gatsby-source-yelp",
+  "version": "1.0.0",
+  "description": "A Yelp source plugin",
+  "author": "June Leoman Lapera @leomanlapera",
+  "main": "index.js",
+  "license": "MIT",
+  "keywords": [
+    "gatsby",
+    "gatsby-plugin",
+    "gatsby-source-plugin",
+    "yelp"
+  ],
+  "devDependencies": {
+    "gatsby": "^2.18.22"
+  },
+  "dependencies": {
+    "node-fetch": "^2.6.0"
+  },
+  "peerDependencies": {
+    "gatsby": "^2.18.23"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/leomanlapera/gatsby-source-yelp"
+  },
+  "homepage": "https://github.com/leomanlapera/gatsby-source-yelp"
+}
