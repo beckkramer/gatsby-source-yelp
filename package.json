@@ -12,13 +12,13 @@
     "yelp"
   ],
   "devDependencies": {
-    "gatsby": "^2.18.22"
+    "gatsby": "^2.19.10"
   },
   "dependencies": {
-    "node-fetch": "^2.6.0"
+    "axios": "^0.19.2"
   },
   "peerDependencies": {
-    "gatsby": "^2.18.23"
+    "gatsby": "^2.19.10"
   },
   "repository": {
     "type": "git",

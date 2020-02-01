@@ -1,4 +1,4 @@
-const fetch = require("node-fetch");
+const axios = require("axios");
 
 exports.sourceNodes = async (
   { actions, createNodeId, createContentDigest, reporter },
@@ -43,35 +43,31 @@ exports.sourceNodes = async (
     method: "GET",
     headers: {
       Authorization: `Bearer ${apiKey}`
-    },
-    redirect: "follow"
+    }
   };
 
   // Fetch a response from api business reviews
-  const getBusinessReviews = await fetch(
-    `${apiURL}/businesses/${id}/reviews`,
-    requestOptions
-  )
-    // Parse the response as JSON
-    .then(response => response.json())
-    // Process the JSON data into a node
-    .then(data => {
-      // For each query result
+  const getBusinessReviews = await axios
+    .get(`${apiURL}/businesses/${id}/reviews`, requestOptions)
+    .then(response => {
+      const data = response.data;
       data.reviews.forEach(review => {
+        // Process the JSON data into a node
         const nodeData = processData(review, "YelpBusinessReview");
         // Use Gatsby's createNode helper to create a node from the node data
         createNode(nodeData);
       });
+    })
+    .catch(err => {
+      console.warn(`\n Could not fetch yelp reviews. Error ${err}`);
+      return null;
     });
 
   // Fetch a response from api business details
-  const getBusinessDetails = await fetch(
-    `${apiURL}/businesses/${id}`,
-    requestOptions
-  )
-    .then(response => response.json())
-    .then(data => {
-      const nodeData = processData(data, "YelpBusinessDetails");
+  const getBusinessDetails = await axios
+    .get(`${apiURL}/businesses/${id}`, requestOptions)
+    .then(response => {
+      const nodeData = processData(response.data, "YelpBusinessDetails");
       createNode(nodeData);
     });
 
